@@ -2,8 +2,8 @@ import type { ComponentType, SVGProps } from 'react'
 import {
   SiGo,
   SiTypescript,
-  SiOpenjdk,
   SiJavascript,
+  SiOpenjdk,
   SiMysql,
   SiReact,
   SiNextdotjs,
@@ -11,15 +11,22 @@ import {
   SiExpress,
   SiSpringboot,
   SiGin,
+  SiVite,
   SiDocker,
   SiGitlab,
+  SiBitbucket,
   SiJenkins,
   SiRedux,
   SiIntellijidea,
+  SiAnthropic,
+  SiOpenai,
+  SiGithubcopilot,
+  SiGooglegemini,
 } from 'react-icons/si'
-import { VscCode, VscTerminalCmd, VscSymbolNamespace, VscServerProcess, VscTools } from 'react-icons/vsc'
-import { TbBrandCSharp, TbDatabase, TbBuildingBridge2 } from 'react-icons/tb'
+import { VscCode, VscTerminalCmd, VscSymbolNamespace, VscServerProcess, VscDatabase, VscTools } from 'react-icons/vsc'
+import { TbBrandCSharp, TbDatabase } from 'react-icons/tb'
 import { FaMicrosoft } from 'react-icons/fa'
+import { DiMsqlServer } from 'react-icons/di'
 
 type IconType = ComponentType<SVGProps<SVGSVGElement>>
 
@@ -42,9 +49,9 @@ const skillCategories: Category[] = [
     skills: [
       { name: 'Go', Icon: SiGo },
       { name: 'TypeScript', Icon: SiTypescript },
-      { name: 'C#.NET', Icon: TbBrandCSharp },
-      { name: 'Java', Icon: SiOpenjdk },
       { name: 'JavaScript', Icon: SiJavascript },
+      { name: 'C#', Icon: TbBrandCSharp },
+      { name: 'Java', Icon: SiOpenjdk },
       { name: 'SQL', Icon: SiMysql },
     ],
   },
@@ -56,7 +63,9 @@ const skillCategories: Category[] = [
     skills: [
       { name: 'React', Icon: SiReact },
       { name: 'Next.js', Icon: SiNextdotjs },
+      { name: 'Redux', Icon: SiRedux },
       { name: '.NET Core', Icon: SiDotnet },
+      { name: 'Vite', Icon: SiVite },
       { name: 'Express.js', Icon: SiExpress },
       { name: 'Spring Boot', Icon: SiSpringboot },
       { name: 'Gin', Icon: SiGin },
@@ -69,11 +78,12 @@ const skillCategories: Category[] = [
     iconColor: 'text-primary',
     skills: [
       { name: 'Docker', Icon: SiDocker },
-      { name: 'Azure DevOps', Icon: FaMicrosoft },
+      { name: 'Azure', Icon: FaMicrosoft },
       { name: 'GitLab', Icon: SiGitlab },
+      { name: 'Bitbucket', Icon: SiBitbucket },
       { name: 'Jenkins', Icon: SiJenkins },
-      { name: 'Azure Pipelines', Icon: FaMicrosoft },
       { name: 'MySQL / SQL Server', Icon: SiMysql },
+      { name: 'Oracle DB', Icon: TbDatabase },
     ],
   },
   {
@@ -84,10 +94,10 @@ const skillCategories: Category[] = [
     skills: [
       { name: 'VS Code', Icon: VscCode },
       { name: 'IntelliJ IDEA', Icon: SiIntellijidea },
-      { name: 'Oracle DB', Icon: TbDatabase },
-      { name: 'Redux', Icon: SiRedux },
-      { name: 'EF Core', Icon: TbDatabase },
-      { name: 'System Architecture', Icon: TbBuildingBridge2 },
+      { name: 'Claude', Icon: SiAnthropic },
+      { name: 'ChatGPT', Icon: SiOpenai },
+      { name: 'GitHub Copilot', Icon: SiGithubcopilot },
+      { name: 'Gemini', Icon: SiGooglegemini },
     ],
   },
 ]

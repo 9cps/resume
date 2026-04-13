@@ -20,6 +20,26 @@ function App() {
   const [revealed, setRevealed] = useState(false)
 
   useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual'
+    }
+    window.scrollTo(0, 0)
+  }, [])
+
+  useEffect(() => {
+    const lenis = (window as unknown as { lenis?: Lenis }).lenis
+    if (loading) {
+      document.body.style.overflow = 'hidden'
+      window.scrollTo(0, 0)
+      lenis?.stop()
+    } else {
+      document.body.style.overflow = ''
+      window.scrollTo(0, 0)
+      lenis?.start()
+    }
+  }, [loading])
+
+  useEffect(() => {
     // Smooth scroll via Lenis, synced with GSAP ScrollTrigger
     const lenis = new Lenis({
       duration: 2,
@@ -31,6 +51,8 @@ function App() {
         offset: -80,
       },
     })
+
+    ;(window as unknown as { lenis: Lenis }).lenis = lenis
 
     lenis.on('scroll', ScrollTrigger.update)
 
@@ -97,6 +119,7 @@ function App() {
       revealObserver.disconnect()
       gsap.ticker.remove(rafCallback)
       lenis.destroy()
+      delete (window as unknown as { lenis?: Lenis }).lenis
     }
   }, [])
 
@@ -130,6 +153,17 @@ function App() {
       <div className="scan-line" />
 
       <div
+        className="transition-opacity duration-1000 ease-out"
+        style={{
+          position: 'relative',
+          zIndex: 60,
+          opacity: revealed ? 1 : 0,
+        }}
+      >
+        <Navbar />
+      </div>
+
+      <div
         className="relative transition-all duration-1000 ease-out"
         style={{
           zIndex: 2,
@@ -137,7 +171,6 @@ function App() {
           transform: revealed ? 'translateY(0)' : 'translateY(40px)',
         }}
       >
-        <Navbar />
         <main className="pt-20">
           <HeroSection />
           <AboutSection />

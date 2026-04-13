@@ -1,30 +1,35 @@
+import smartFeedImg from '../assets/work/smart-feed.svg'
+import tdrTtbImg from '../assets/work/tdr-ttb.jpg'
+import ntImg from '../assets/work/nt.png'
+import eatshubImg from '../assets/work/eatshub.jpg'
+
 const projects = [
   {
     title: 'Smart Feed Planning',
     subtitle: 'The control room behind every CPF feed formula',
     tag: 'Agri-Tech',
-    image: '',
+    image: smartFeedImg,
     hoverRotate: 'hover:rotate-1',
   },
   {
     title: 'Debt Restructuring System',
     subtitle: 'Credit scoring & debt rescue engine for ttb Bank',
     tag: 'Fintech',
-    image: '',
+    image: tdrTtbImg,
     hoverRotate: 'hover:-rotate-1',
   },
   {
     title: 'NT Online Payment',
     subtitle: 'Nationwide bill-pay gateway for everyday customers',
     tag: 'Payment',
-    image: '',
+    image: ntImg,
     hoverRotate: 'hover:rotate-1',
   },
   {
     title: 'POS EatsHub',
     subtitle: 'Front-of-house POS meets online ordering, in one stack',
     tag: 'F&B',
-    image: '',
+    image: eatshubImg,
     hoverRotate: 'hover:-rotate-1',
   },
 ]
@@ -85,12 +90,24 @@ export function ProjectsSection() {
             Field notes from banking, agri-tech & public sector builds.
           </p>
         </div>
-        <div
-          className="reveal reveal-right bg-tertiary border-4 border-slate-900 p-4 shadow-retro-sm font-black uppercase animate-float"
+        <a
+          href="https://github.com/9cps"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="reveal reveal-right inline-flex items-center gap-2 bg-tertiary border-4 border-slate-900 p-4 shadow-retro-sm font-black uppercase animate-float hover:bg-primary hover:text-white transition-colors"
           style={{ '--stagger-index': 2 } as React.CSSProperties}
         >
-          Archive Vol. 1
-        </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-6 h-6"
+            aria-hidden="true"
+          >
+            <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z" />
+          </svg>
+          Github
+        </a>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 stagger-container">

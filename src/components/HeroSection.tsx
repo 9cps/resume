@@ -22,9 +22,9 @@ export function HeroSection() {
             className="reveal reveal-left text-6xl md:text-8xl font-black text-slate-900 leading-[0.9] mb-8 uppercase italic"
             style={{ '--stagger-index': 2 } as React.CSSProperties}
           >
-            <ShuffleText text="Chokpaisan" trigger="view" duration={1100} stagger={55} />
+            <ShuffleText text="Chokpaisan" trigger="view" duration={4000} stagger={160} />
             <br />
-            <ShuffleText text="Sripraiwan" trigger="view" duration={1100} stagger={55} />
+            <ShuffleText text="Sripraiwan" trigger="view" duration={4000} stagger={160} />
           </h1>
           <p
             className="reveal reveal-left text-xl md:text-2xl text-slate-700 font-medium max-w-xl mb-12 border-l-8 border-primary pl-6 leading-relaxed"
@@ -45,6 +45,20 @@ export function HeroSection() {
               <button
                 className="btn-retro bg-white text-slate-900 border-4 border-slate-900 px-10 py-5 font-bold text-xl shadow-retro hover:bg-amber-400 transition-all uppercase"
                 id="portal-btn"
+                onClick={() => {
+                  const target = document.getElementById('about')
+                  if (!target) return
+                  const lenis = (window as unknown as { lenis?: { scrollTo: (target: HTMLElement, opts?: Record<string, unknown>) => void } }).lenis
+                  if (lenis) {
+                    lenis.scrollTo(target, {
+                      offset: -80,
+                      duration: 2.5,
+                      easing: (t: number) => 1 - Math.pow(1 - t, 3),
+                    })
+                  } else {
+                    target.scrollIntoView({ behavior: 'smooth' })
+                  }
+                }}
               >
                 Enter the Archive
               </button>

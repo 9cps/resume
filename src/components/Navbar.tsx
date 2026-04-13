@@ -46,10 +46,25 @@ export function Navbar() {
           <div className="hidden md:flex items-stretch h-full font-headline uppercase tracking-tighter">
             {navLinks.map((link) => {
               const isActive = activeId === link.href.slice(1)
+              const isHome = link.href === '#home'
               return (
                 <a
                   key={link.href}
                   href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    if (isHome) {
+                      window.scrollTo({ top: 0, behavior: 'smooth' })
+                      history.replaceState(null, '', ' ')
+                      return
+                    }
+                    const el = document.getElementById(link.href.slice(1))
+                    if (!el) return
+                    const navH = 80
+                    const top = el.getBoundingClientRect().top + window.scrollY - navH
+                    window.scrollTo({ top, behavior: 'smooth' })
+                    history.replaceState(null, '', link.href)
+                  }}
                   className={
                     isActive
                       ? 'text-slate-900 bg-primary border-b-8 border-orange-600 flex items-center px-8 font-bold transition-all'
