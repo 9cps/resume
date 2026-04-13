@@ -12,6 +12,7 @@ import { ContactSection } from './components/ContactSection'
 import { Footer } from './components/Footer'
 import { PixelTrail } from './components/PixelTrail'
 import { LoadingScreen } from './components/LoadingScreen'
+import { ClickSpark } from './components/ClickSpark'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -124,6 +125,7 @@ function App() {
   }, [])
 
   return (
+    <ClickSpark sparkColor="#F1A13C" sparkSize={12} sparkRadius={20} sparkCount={10} duration={500}>
     <div className="bg-background text-on-surface selection:bg-primary selection:text-white">
       {loading && (
         <LoadingScreen
@@ -182,6 +184,7 @@ function App() {
         <Footer />
       </div>
     </div>
+    </ClickSpark>
   )
 }
 
