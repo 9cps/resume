@@ -1,31 +1,94 @@
-const skillCategories = [
+import type { ComponentType, SVGProps } from 'react'
+import {
+  SiGo,
+  SiTypescript,
+  SiOpenjdk,
+  SiJavascript,
+  SiMysql,
+  SiReact,
+  SiNextdotjs,
+  SiDotnet,
+  SiExpress,
+  SiSpringboot,
+  SiGin,
+  SiDocker,
+  SiGitlab,
+  SiJenkins,
+  SiRedux,
+  SiIntellijidea,
+} from 'react-icons/si'
+import { VscCode, VscTerminalCmd, VscSymbolNamespace, VscServerProcess, VscTools } from 'react-icons/vsc'
+import { TbBrandCSharp, TbDatabase, TbBuildingBridge2 } from 'react-icons/tb'
+import { FaMicrosoft } from 'react-icons/fa'
+
+type IconType = ComponentType<SVGProps<SVGSVGElement>>
+
+type Skill = { name: string; Icon: IconType }
+
+type Category = {
+  title: string
+  HeaderIcon: IconType
+  dotColor: string
+  iconColor: string
+  skills: Skill[]
+}
+
+const skillCategories: Category[] = [
   {
     title: 'CORE_LANG.SYS',
-    icon: 'code',
+    HeaderIcon: VscTerminalCmd,
     dotColor: 'bg-white',
     iconColor: 'text-primary',
-    skills: ['Go', 'TypeScript', 'C#.NET', 'Java', 'JavaScript', 'SQL'],
+    skills: [
+      { name: 'Go', Icon: SiGo },
+      { name: 'TypeScript', Icon: SiTypescript },
+      { name: 'C#.NET', Icon: TbBrandCSharp },
+      { name: 'Java', Icon: SiOpenjdk },
+      { name: 'JavaScript', Icon: SiJavascript },
+      { name: 'SQL', Icon: SiMysql },
+    ],
   },
   {
     title: 'FRAMEWORKS.LIB',
-    icon: 'view_quilt',
+    HeaderIcon: VscSymbolNamespace,
     dotColor: 'bg-tertiary',
     iconColor: 'text-tertiary',
-    skills: ['React', 'Next.js', '.NET Core', 'Express.js', 'Spring Boot', 'Gin'],
+    skills: [
+      { name: 'React', Icon: SiReact },
+      { name: 'Next.js', Icon: SiNextdotjs },
+      { name: '.NET Core', Icon: SiDotnet },
+      { name: 'Express.js', Icon: SiExpress },
+      { name: 'Spring Boot', Icon: SiSpringboot },
+      { name: 'Gin', Icon: SiGin },
+    ],
   },
   {
     title: 'INFRASTRUCTURE.EXE',
-    icon: 'cloud',
+    HeaderIcon: VscServerProcess,
     dotColor: 'bg-primary',
     iconColor: 'text-primary',
-    skills: ['Docker', 'Azure DevOps', 'GitLab', 'Jenkins', 'Azure Pipelines', 'MySQL / SQL Server'],
+    skills: [
+      { name: 'Docker', Icon: SiDocker },
+      { name: 'Azure DevOps', Icon: FaMicrosoft },
+      { name: 'GitLab', Icon: SiGitlab },
+      { name: 'Jenkins', Icon: SiJenkins },
+      { name: 'Azure Pipelines', Icon: FaMicrosoft },
+      { name: 'MySQL / SQL Server', Icon: SiMysql },
+    ],
   },
   {
     title: 'UTILITIES.BIN',
-    icon: 'construction',
+    HeaderIcon: VscTools,
     dotColor: 'bg-slate-400',
     iconColor: 'text-slate-600',
-    skills: ['VS Code', 'IntelliJ IDEA', 'Oracle DB', 'Redux', 'EF Core', 'System Architecture'],
+    skills: [
+      { name: 'VS Code', Icon: VscCode },
+      { name: 'IntelliJ IDEA', Icon: SiIntellijidea },
+      { name: 'Oracle DB', Icon: TbDatabase },
+      { name: 'Redux', Icon: SiRedux },
+      { name: 'EF Core', Icon: TbDatabase },
+      { name: 'System Architecture', Icon: TbBuildingBridge2 },
+    ],
   },
 ]
 
@@ -33,14 +96,10 @@ function SkillCard({
   category,
   staggerIndex,
 }: {
-  category: (typeof skillCategories)[number]
+  category: Category
   staggerIndex: number
 }) {
-  const iconName = category.icon === 'code' ? 'terminal'
-    : category.icon === 'view_quilt' ? 'diamond'
-    : category.icon === 'cloud' ? 'settings_ethernet'
-    : 'edit_note'
-
+  const HeaderIcon = category.HeaderIcon
   return (
     <div
       className="reveal reveal-scale bg-white border-4 border-slate-900 shadow-retro overflow-hidden"
@@ -48,17 +107,17 @@ function SkillCard({
     >
       <div className="window-header">
         <span className="text-white text-xs font-black tracking-tighter uppercase flex items-center gap-2">
-          <span className="material-symbols-outlined text-sm">{category.icon}</span> {category.title}
+          <HeaderIcon className="w-4 h-4" /> {category.title}
         </span>
         <div className="flex gap-1">
           <div className={`window-dot ${category.dotColor}`} />
         </div>
       </div>
       <div className="p-6 space-y-3">
-        {category.skills.map((skill) => (
-          <div key={skill} className="skill-chip">
-            <span className={`material-symbols-outlined ${category.iconColor} text-base`}>{iconName}</span>
-            {skill}
+        {category.skills.map(({ name, Icon }) => (
+          <div key={name} className="skill-chip">
+            <Icon className={`${category.iconColor} w-5 h-5 shrink-0`} />
+            {name}
           </div>
         ))}
       </div>

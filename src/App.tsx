@@ -1,4 +1,7 @@
 import { useEffect } from 'react'
+import Lenis from 'lenis'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Navbar } from './components/Navbar'
 import { HeroSection } from './components/HeroSection'
 import { AboutSection } from './components/AboutSection'
@@ -9,8 +12,30 @@ import { ContactSection } from './components/ContactSection'
 import { Footer } from './components/Footer'
 import { PixelTrail } from './components/PixelTrail'
 
+gsap.registerPlugin(ScrollTrigger)
+
 function App() {
   useEffect(() => {
+    // Smooth scroll via Lenis, synced with GSAP ScrollTrigger
+    const lenis = new Lenis({
+      duration: 2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1.2,
+      touchMultiplier: 1.5,
+      anchors: {
+        offset: -80,
+      },
+    })
+
+    lenis.on('scroll', ScrollTrigger.update)
+
+    const rafCallback = (time: number) => {
+      lenis.raf(time * 1000)
+    }
+    gsap.ticker.add(rafCallback)
+    gsap.ticker.lagSmoothing(0)
+
     const parallaxLayers = document.querySelectorAll<HTMLElement>('.parallax-layer')
     const revealElements = document.querySelectorAll('.reveal')
     const portalBtn = document.getElementById('portal-btn')
@@ -56,26 +81,18 @@ function App() {
 
     revealElements.forEach((el) => revealObserver.observe(el))
 
-    // Global Scroll Listener
-    let ticking = false
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          handleParallax()
-          handlePortalScroll()
-          ticking = false
-        })
-        ticking = true
-      }
-    }
+    lenis.on('scroll', () => {
+      handleParallax()
+      handlePortalScroll()
+    })
 
-    window.addEventListener('scroll', onScroll)
     handleParallax()
     handlePortalScroll()
 
     return () => {
-      window.removeEventListener('scroll', onScroll)
       revealObserver.disconnect()
+      gsap.ticker.remove(rafCallback)
+      lenis.destroy()
     }
   }, [])
 

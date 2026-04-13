@@ -1,4 +1,5 @@
 import profileImg from '../assets/cv/profile_img.png'
+import { ShuffleText } from './ShuffleText'
 
 export function HeroSection() {
   return (
@@ -21,7 +22,9 @@ export function HeroSection() {
             className="reveal reveal-left text-6xl md:text-8xl font-black text-slate-900 leading-[0.9] mb-8 uppercase italic"
             style={{ '--stagger-index': 2 } as React.CSSProperties}
           >
-            Chokpaisan <br /> Sripraiwan
+            <ShuffleText text="Chokpaisan" trigger="view" duration={1100} stagger={55} />
+            <br />
+            <ShuffleText text="Sripraiwan" trigger="view" duration={1100} stagger={55} />
           </h1>
           <p
             className="reveal reveal-left text-xl md:text-2xl text-slate-700 font-medium max-w-xl mb-12 border-l-8 border-primary pl-6 leading-relaxed"
