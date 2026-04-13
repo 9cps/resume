@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Lenis from 'lenis'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -11,10 +11,14 @@ import { ProjectsSection } from './components/ProjectsSection'
 import { ContactSection } from './components/ContactSection'
 import { Footer } from './components/Footer'
 import { PixelTrail } from './components/PixelTrail'
+import { LoadingScreen } from './components/LoadingScreen'
 
 gsap.registerPlugin(ScrollTrigger)
 
 function App() {
+  const [loading, setLoading] = useState(true)
+  const [revealed, setRevealed] = useState(false)
+
   useEffect(() => {
     // Smooth scroll via Lenis, synced with GSAP ScrollTrigger
     const lenis = new Lenis({
@@ -98,8 +102,20 @@ function App() {
 
   return (
     <div className="bg-background text-on-surface selection:bg-primary selection:text-white">
-      {/* Pixel Trail Background */}
-      <div className="fixed inset-0 w-full h-full pointer-events-none" style={{ zIndex: 1 }}>
+      {loading && (
+        <LoadingScreen
+          onComplete={() => {
+            setLoading(false)
+            requestAnimationFrame(() => setRevealed(true))
+          }}
+        />
+      )}
+
+      {/* Pixel Trail Background — kept outside the reveal wrapper so `fixed` works */}
+      <div
+        className="fixed inset-0 w-full h-full pointer-events-none transition-opacity duration-1000 ease-out"
+        style={{ zIndex: 1, opacity: revealed ? 1 : 0 }}
+      >
         <PixelTrail
           gridSize={50}
           trailSize={0.08}
@@ -113,7 +129,14 @@ function App() {
       <div className="crt-overlay" />
       <div className="scan-line" />
 
-      <div className="relative" style={{ zIndex: 2 }}>
+      <div
+        className="relative transition-all duration-1000 ease-out"
+        style={{
+          zIndex: 2,
+          opacity: revealed ? 1 : 0,
+          transform: revealed ? 'translateY(0)' : 'translateY(40px)',
+        }}
+      >
         <Navbar />
         <main className="pt-20">
           <HeroSection />
