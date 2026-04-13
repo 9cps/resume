@@ -23,10 +23,9 @@ import {
   SiGithubcopilot,
   SiGooglegemini,
 } from 'react-icons/si'
-import { VscCode, VscTerminalCmd, VscSymbolNamespace, VscServerProcess, VscDatabase, VscTools } from 'react-icons/vsc'
+import { VscCode, VscTerminalCmd, VscSymbolNamespace, VscServerProcess, VscTools } from 'react-icons/vsc'
 import { TbBrandCSharp, TbDatabase } from 'react-icons/tb'
 import { FaMicrosoft } from 'react-icons/fa'
-import { DiMsqlServer } from 'react-icons/di'
 
 type IconType = ComponentType<SVGProps<SVGSVGElement>>
 
