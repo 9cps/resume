@@ -116,16 +116,16 @@ function SkillCard({
     >
       <div className="window-header">
         <span className="text-white text-xs font-black tracking-tighter uppercase flex items-center gap-2">
-          <HeaderIcon className="w-4 h-4" /> {category.title}
+          <HeaderIcon className="w-4 h-4" /> <span className="hidden sm:inline">{category.title}</span><span className="sm:hidden">{category.title.split('.')[0]}</span>
         </span>
         <div className="flex gap-1">
           <div className={`window-dot ${category.dotColor}`} />
         </div>
       </div>
-      <div className="p-6 space-y-3">
+      <div className="p-4 sm:p-6 space-y-2 sm:space-y-3">
         {category.skills.map(({ name, Icon }) => (
-          <div key={name} className="skill-chip">
-            <Icon className={`${category.iconColor} w-5 h-5 shrink-0`} />
+          <div key={name} className="skill-chip text-xs sm:text-sm">
+            <Icon className={`${category.iconColor} w-4 sm:w-5 h-4 sm:h-5 shrink-0`} />
             {name}
           </div>
         ))}
@@ -136,7 +136,7 @@ function SkillCard({
 
 export function TechMarquee() {
   return (
-    <section id="technical-curation" className="relative py-32 overflow-hidden border-b-4 border-slate-900 bg-slate-50">
+    <section id="technical-curation" className="relative py-16 sm:py-24 lg:py-32 overflow-hidden border-b-4 border-slate-900 bg-slate-50">
       <div
         className="parallax-layer parallax-bg absolute top-1/2 left-0 w-full h-full flex items-center justify-center opacity-[0.03] text-[20vw] font-black uppercase pointer-events-none select-none"
         data-speed="0.2"
@@ -144,19 +144,19 @@ export function TechMarquee() {
         STACK
       </div>
 
-      <div className="max-w-7xl mx-auto px-8 mb-20 relative z-10">
-        <h2 className="reveal reveal-left text-5xl font-black text-slate-900 uppercase italic">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 mb-12 sm:mb-20 relative z-10">
+        <h2 className="reveal reveal-left text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 uppercase italic">
           Technical <span className="text-primary">Curation</span>
         </h2>
         <p
-          className="reveal reveal-left text-slate-600 font-bold uppercase tracking-widest mt-2"
+          className="reveal reveal-left text-slate-600 font-bold uppercase tracking-widest mt-2 text-xs sm:text-sm"
           style={{ '--stagger-index': 1 } as React.CSSProperties}
         >
           System Modules Loaded: v2.0.4
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10 stagger-container">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 relative z-10 stagger-container">
         {skillCategories.map((category, i) => (
           <SkillCard key={category.title} category={category} staggerIndex={i + 2} />
         ))}

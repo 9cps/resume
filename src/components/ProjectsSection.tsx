@@ -43,10 +43,10 @@ function ProjectCard({
 }) {
   return (
     <div
-      className={`reveal reveal-scale group bg-white border-4 border-slate-900 p-6 shadow-retro ${project.hoverRotate} transition-transform`}
+      className={`reveal reveal-scale group bg-white border-4 border-slate-900 p-4 sm:p-6 shadow-retro ${project.hoverRotate} transition-transform`}
       style={{ '--stagger-index': staggerIndex } as React.CSSProperties}
     >
-      <div className="aspect-video bg-slate-100 border-4 border-slate-900 overflow-hidden mb-8 relative flex items-center justify-center">
+      <div className="aspect-video bg-slate-100 border-4 border-slate-900 overflow-hidden mb-4 sm:mb-8 relative flex items-center justify-center">
         {project.image ? (
           <img
             alt={project.title}
@@ -54,20 +54,20 @@ function ProjectCard({
             src={project.image}
           />
         ) : (
-          <span className="material-symbols-outlined text-8xl text-slate-300">deployed_code</span>
+          <span className="material-symbols-outlined text-6xl sm:text-8xl text-slate-300">deployed_code</span>
         )}
-        <div className="absolute top-4 right-4 bg-primary text-white font-black px-4 py-1 uppercase text-xs border-2 border-slate-900">
+        <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-primary text-white font-black px-2 sm:px-4 py-1 uppercase text-xs border-2 border-slate-900">
           {project.tag}
         </div>
       </div>
       <div className="flex justify-between items-end">
         <div>
-          <h3 className="text-3xl font-black text-slate-900 uppercase group-hover:text-primary transition-colors">
+          <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-slate-900 uppercase group-hover:text-primary transition-colors">
             {project.title}
           </h3>
-          <p className="text-slate-600 font-bold uppercase text-sm mt-1">{project.subtitle}</p>
+          <p className="text-slate-600 font-bold uppercase text-xs sm:text-sm mt-1">{project.subtitle}</p>
         </div>
-        <span className="material-symbols-outlined text-4xl text-slate-900 group-hover:translate-x-2 transition-transform">
+        <span className="material-symbols-outlined text-3xl sm:text-4xl text-slate-900 group-hover:translate-x-2 transition-transform">
           arrow_forward_ios
         </span>
       </div>
@@ -77,16 +77,16 @@ function ProjectCard({
 
 export function ProjectsSection() {
   return (
-    <section id="projects" className="py-32 px-8 max-w-7xl mx-auto overflow-hidden">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4 stagger-container">
+    <section id="projects" className="py-16 sm:py-24 lg:py-32 px-4 sm:px-8 max-w-7xl mx-auto overflow-hidden">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-8 sm:mb-16 gap-4 stagger-container">
         <div
           className="reveal reveal-left"
           style={{ '--stagger-index': 1 } as React.CSSProperties}
         >
-          <h2 className="text-6xl font-black text-slate-900 uppercase italic">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 uppercase italic">
             Selected <span className="text-primary not-italic">Works</span>
           </h2>
-          <p className="text-slate-600 font-bold uppercase tracking-widest mt-4">
+          <p className="text-slate-600 font-bold uppercase tracking-widest mt-4 text-xs sm:text-sm">
             Field notes from banking, agri-tech & public sector builds.
           </p>
         </div>
@@ -94,14 +94,14 @@ export function ProjectsSection() {
           href="https://github.com/9cps"
           target="_blank"
           rel="noopener noreferrer"
-          className="reveal reveal-right inline-flex items-center gap-2 bg-tertiary border-4 border-slate-900 p-4 shadow-retro-sm font-black uppercase animate-float hover:bg-primary hover:text-white transition-colors"
+          className="reveal reveal-right inline-flex items-center gap-2 bg-tertiary border-4 border-slate-900 p-3 sm:p-4 shadow-retro-sm font-black uppercase animate-float hover:bg-primary hover:text-white transition-colors"
           style={{ '--stagger-index': 2 } as React.CSSProperties}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            className="w-6 h-6"
+            className="w-5 sm:w-6 h-5 sm:h-6"
             aria-hidden="true"
           >
             <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.47.11-3.06 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.77.11 3.06.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.41-5.27 5.69.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.68.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z" />
@@ -110,7 +110,7 @@ export function ProjectsSection() {
         </a>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 stagger-container">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-12 stagger-container">
         {projects.map((project, i) => (
           <ProjectCard key={project.title} project={project} staggerIndex={i + 3} />
         ))}
